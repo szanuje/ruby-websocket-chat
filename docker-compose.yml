@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+
+  my-redis:
+    container_name: 'my-redis'
+    image: redis:alpine
+    command: --port 6666
+    ports:
+      - "6666:6666"
+    expose:
+      - "6666"
+  my-server:
+    container_name: 'my-server'
+    environment:
+      - LOGGING_OUT=/proc/1/fd/1
+      - REDIS_HOST=my-redis
+      - REDIS_PORT=6666
+    build: .
+    depends_on:
+      - my-redis
+    ports:
+      - "2345:2345"
+    volumes:
+      - .:/app

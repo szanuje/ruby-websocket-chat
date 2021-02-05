@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Websocket Client</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <div class="chat-wrapper">
+
+        <div class="chat" id="chat">
+            <div class="box" id="box1">
+                <span class="chat-text">Welcome!</span>
+            </div>
+        </div>
+
+        <div>
+            <input type="text" id="text-input" maxlength="31">
+            <button type="submit" id="send-button">Send</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        sendButton = document.getElementById('send-button');
+        textInput = document.getElementById('text-input');
+        chatDiv = document.getElementById('chat');
+
+        mySocket = new WebSocket("ws://localhost:2345");
+        mySocket.onopen = () => mySocket.send('Hello');
+        mySocket.onmessage = (event) => createNewMessageDiv(chatDiv, event.data)
+        sendButton.onclick = function(e) {
+            mySocket.send(textInput.value);
+            textInput.value = '';
+        }
+
+
+        textInput.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) { // enter
+                event.preventDefault();
+                sendButton.click();
+            }
+        });
+
+        function createNewMessageDiv(parentDiv, text) {
+            split = text.split(':');
+            message = split[1];
+
+            date = new Date(0);
+            date.setUTCSeconds(split[0]);
+            actual_date = date.toString().substring(0, 3) + " " + date.toString().substring(16, 24);
+            parentDiv.innerHTML = '<div class="box" id="box4"> <span class="chat-text">' + message + '</span> <span class="chat-time" style="float: right; font-size: small; margin: 10px;">' + actual_date + '</span> </div>' + parentDiv.innerHTML;
+        }
+    </script>
+</body>
+
+</html>
