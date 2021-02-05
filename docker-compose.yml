@@ -23,3 +23,8 @@ services:
       - "2345:2345"
     volumes:
       - .:/app
+  my-web:
+    container_name: 'my-web'
+    build: ./web
+    ports:
+    - "8888:8888"

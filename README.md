@@ -1,5 +1,9 @@
 # Ruby websocket chat
 
-Run server with either `docker-compose up` or `ruby runner.rb` or `bundle exec ruby runner.rb`
+Run dockerized app with `docker-compose up`
 
-Run web service with tool of your choice.
+Dockerized web service runs on `localhost:8888`
+
+Alternatively, run server with either `ruby runner.rb` or `bundle exec ruby runner.rb`, then run web service with tool of your choice.
+
+Server runs on `localhost:2345`

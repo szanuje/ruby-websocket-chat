@@ -7,7 +7,7 @@ body {
 .chat-wrapper {
     width: 600px;
     height: 400px;
-    left: calc(50% - 200px);
+    left: calc(50% - 300px);
     top: calc(50% - 200px);
     position: absolute;
     background-color: white;
@@ -24,13 +24,11 @@ body {
 }
 
 .box {
-    width: 90%;
+    width: 98%;
     height: 40px;
     background-color: whitesmoke;
     border-radius: 25px;
     border: 2px solid #e0e0e0;
-    bottom: 10px;
-    margin: 0 0 0 5px;
 }
 
 .chat-text {
@@ -47,8 +45,8 @@ body {
 }
 
 #send-button {
-    width: 15%;
-    height: 30px;
+    width: 80px;
+    height: 35px;
 }
 
 ::-webkit-scrollbar {
